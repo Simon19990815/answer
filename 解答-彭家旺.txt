@@ -1,0 +1,59 @@
+一、import requests
+       import pandas as pd
+       res = requests.get('https://voice.baidu.com/act/newpneumonia/newpneumonia/?from=osari_aladin_banner#tab')
+       res_json = res.json();
+       data = pd.get_data()
+       data.to_csv('新冠疫情.csv')
+       
+
+二、StartDate = '2020-10-09
+       EndDate = '2020-11-07
+       def date_range(start = StartDate,end = EndDate)
+       res_data = res_dict["date"]["pc"]["mobile"]
+       data = {}
+       for i in res_data
+             res_data[i]=i['date']['pc']['mobile']
+       print(res_data)
+                
+       
+三、1)
+import pymysql
+
+config = {'host':'',
+          'port':,
+          'user':'',
+          'passwd':'',
+          'charset':'utf8mb4',
+          'local_infile':1
+          }
+conn = pymysql.connect()
+cur = conn.cursor()
+
+def load_csv(csv_file_path,table_name,database=''):
+    file = open(csv_file_path, 'r',encoding='utf-8')
+    reader = file.readline()
+    b = reader.split(',')
+    colum = ''
+    for a in b:
+        colum = colum + a + ' varchar(255),'
+    colum = colum[:-1]
+
+    create_sql = 'create table if not exists ' + table_name + ' ' + '(' + colum + ')' + ' DEFAULT CHARSET=utf8'
+    data_sql = "LOAD DATA LOCAL INFILE '%s' INTO TABLE %s FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\r\\n' IGNORE 1 LINES" % (csv_filename,table_name)
+
+    cur.execute('use %s' % database)
+    cur.execute('SET NAMES utf8;')
+    cur.execute('SET character_set_connection=utf8;')
+
+    cur.execute(create_sql)
+
+    cur.execute(data_sql)
+    conn.commit()
+
+    conn.close()
+    cur.close()
+
+2)
+对于可扩展性，可以修改读写模式来对架构进行弹性伸缩
+3）
+cursor.execute("update `result` set myid = %d where `sid`=%s and `dates` = ‘%s’ " % (myid[n],x,dates[n]))
